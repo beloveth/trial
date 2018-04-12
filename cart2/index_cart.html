@@ -1,0 +1,347 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="keywords" content="jquery,ui,easy,easyui,web">
+	<meta name="description" content="easyui help you build your web page easily!">
+	<title>index_online-Store</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/icon.css">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
+<script type="text/javascript" src="http://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
+	
+<link rel="stylesheet" href="css/css.css">
+
+	<script>
+		var data = {"total":0,"rows":[]};
+		var totalCost = 0;
+		
+		$(function(){
+			$('#cartcontent').datagrid({
+				singleSelect:true
+			});
+			$('.item').draggable({
+				revert:true,
+				proxy:'clone',
+				onStartDrag:function(){
+					$(this).draggable('options').cursor = 'not-allowed';
+					$(this).draggable('proxy').css('z-index',10);
+				},
+				onStopDrag:function(){
+					$(this).draggable('options').cursor='move';
+				}
+			});
+			$('.cart').droppable({
+				onDragEnter:function(e,source){
+				$(source).draggable('options').cursor='auto';
+				$("#cartMsg").remove();
+			  $(this).append("<span id='cartMsg'> Drop it!</span>");	
+				
+				},
+				onDragLeave:function(e,source){
+					$(source).draggable('options').cursor='not-allowed';
+				},
+				onDrop:function(e,source){
+					
+					var name = $(source).find('h5').html();
+					var price = $(source).find('h6').html();
+					addProduct(name, parseFloat(price.split('N')[1]));
+				
+				  alert("Item added: " + name );
+					$("#cartMsg").remove();
+			    $(this).append("<span id='cartMsg'>You know you make the right choice!</span>");
+					}			
+				
+			});
+			});
+			function addProduct(name,price){
+			function add(){
+				for(var i=0; i<data.total; i++){
+					var row = data.rows[i];
+					if (row.name == name){
+						row.quantity += 1;
+						return;
+					}
+				}
+				data.total += 1;
+				data.rows.push({
+					name:name,
+					quantity:1,
+					price:price,
+					remove:'<a href="#" class="remove" onclick="removeProduct(this, event)">X</a>'
+				});
+			}
+			add();
+			totalCost += price;
+			$('#cartcontent').datagrid('loadData', data);
+			$('div.cart .total').html('Total: N'+totalCost);
+		}
+		
+		function removeProduct(el, event){
+			var tr = $(el).closest('tr');
+			var name = tr.find('td[field=name]').text();
+			var price = tr.find('td[field=price]').text();
+			var quantity = tr.find('td[field=quantity]').text();
+			for (var i = 0; i < data.total; i++)
+			{
+				var row = data.rows[i];
+				if (row.name == name){
+					data.rows.splice(i,1);
+					data.total--;
+					break;
+				}
+			}
+			totalCost -= price*quantity;
+			$('#cartcontent').datagrid('loadData', data);
+			$('div.cart .total').html('Total: N'+totalCost);
+		}
+		
+		
+		
+	</script>
+</head>
+<body style="margin:0;padding:0;height:100%;background:#fafafa;">
+	<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">Products</a></li>
+        <li><a href="#">Deals</a></li>
+        <li><a href="#">Stores</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>cart <span class="badge"> 1</span></a>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+	<div class="jumbotron">
+  <div class="container text-center">
+    <h1 style="color:blue">R-I-N Online Store</h1>      
+    <p style="color:cornflowerblue">Mission, Vision & Values</p>
+  </div>
+</div>
+
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <img src="pictures/cloth1.jpeg" alt="cloth">
+        <div class="carousel-caption">
+          <h4 class="colour">Sell N2500</h3>
+          <p class="colour">%10 off.</p>
+        </div>      
+      </div>
+
+      <div class="item">
+        <img src="pictures/backpack.png" alt="belt">
+        <div class="carousel-caption">
+          <h4 class = "colour">More Sell @ N1200</h3>
+          <p class="colour">%15 0ff..</p>
+        </div>      
+      </div>
+      
+    
+<div class="item">
+        <img src="pictures/shoe1.jpeg" alt="shoe">
+        <div class="carousel-caption">
+          <h4 class="colour">Cheaper @ N1500</h3>
+          <p class="colour">%15 0ff..</p>
+        </div>      
+      </div>
+    </div>
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+</div>
+
+<hr>
+<div class="container">
+ <input class="form-control" id="myInput" type="text" placeholder="Search..">
+  <div id="myDIV">
+    
+  </div>
+</div>
+<hr>
+
+<div class="cart">
+		<h1>Shopping Cart</h1>
+		<div style="background:#fff">
+		<table id="cartcontent" fitColumns="true" style="width:300px;height:auto;">
+			<thead>
+				<tr>
+					<th field="name" width=140>Name</th>
+					<th field="quantity" width=60 align="right">Quantity</th>
+					<th field="price" width=60 align="right">Price</th>
+					<th field = "remove" width=60 align="rigth">Remove</th>
+				</tr>
+			</thead>
+		</table>
+		</div>
+		<p class="total">Total: N00:00</p>
+		<h2 >Drop here to add to cart</h2>
+	</div>
+	<br>
+
+<div class="container">
+  <ul class="products">
+		<li>
+			<a href="#" class="item" data-toggle="tooltip" title="Drag to add to chart">
+				<img src="pictures/cloth1.jpeg"/>
+				<div>
+					<h5 style="align-items:center">shirt</h5>
+					<h6>Price:N1500</h6>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a href="#" class="item" data-toggle="tooltip" title="Drag to add to chart">
+				<img src="pictures/backpack.png"/>
+				<div>
+					<h5>Backpack</h5>
+					<h6>Price:N3000<h6>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a href="#" class="item" data-toggle="tooltip" title="Drag to add to chart">
+				<img src="pictures/belt.png"/>
+				<div>
+					<h5>Belt</h5>
+					<h6>Price:N1200</h6>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a href="#" class="item" data-toggle="tooltip" title="Drag to add to chart">
+				<img src="pictures/cloth2.jpeg"/>
+				<div class="test">
+					<h5>Skirt</h5>
+					<h6>Price:N1500</h6>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a href="#" class="item" data-toggle="tooltip" title="Drag to add to chart">
+				<img src="pictures/gloves.png"/>
+				<div>
+					<h5>Gloves</h5>
+					<h6>Price:N1200</h6>
+				</div>
+			</a>
+		</li>
+		<li>
+			<a href="#" class="item" data-toggle="tooltip" title="Drag to add to chart">
+				<img src="pictures/hat.png"/>
+				<div>
+					<h5>Hat</h5>
+					<h6>Price:N1400</h6>
+				</div>
+			</a>
+    </li>
+    <li>
+			<a href="#" class="item" data-toggle="tooltip" title="Drag to add to chart">
+				<img src="pictures/boots.png"/>
+				<div>
+					<h5>Boot</h5>
+					<h6>Price:N2400</h6>
+				</div>
+			</a>
+    </li>
+    <li>
+			<a href="#" class="item" data-toggle="tooltip" title="Drag to add to chart">
+				<img src="pictures/jacket.png"/>
+				<div>
+					<h5>Jacket</h5>
+					<h6>Price:N3200</h6>
+				</div>
+			</a>
+    </li>
+    <li>
+			<a href="#" class="item" data-toggle="tooltip" title="Drag to add to chart">
+				<img src="pictures/shirt1.gif"/>
+				<div>
+					<h5>T-shirt</h5>
+					<h6>Price:N1600</h6>
+				</div>
+			</a>
+    </li>
+    <li>
+			<a href="#" class="item" data-toggle="tooltip" title="Drag to add to chart">
+				<img src="pictures/shirt2.gif"/>
+				<div>
+					<h5>Rolling</h5>
+					<h6>Price:$25</h6>
+				</div>
+			</a>
+    </li>
+    <li>
+			<a href="#" class="item" data-toggle="tooltip" title="Drag to add to chart">
+				<img src="pictures/shirt3.gif"/>
+				<div>
+					<h5>T-shirt</h5>
+					<h6>Price:N1650</h6>
+				</div>
+			</a>
+    </li>
+    <li>
+			<a href="#" class="item" data-toggle="tooltip" title="Drag to add to chart">
+				<img src="pictures/shirt4.gif"/>
+				<div>
+					<h5>Top</h5>
+					<h6>Price:N2000</h6>
+				</div>
+			</a>
+		</li>
+  </ul>
+</div>
+	
+<br>
+<br>
+<br>
+<br>
+<br>
+<div container>
+<footer class="container-fluid text-center">
+  <p>RIN Online Store Copyright</p>  
+  <form class="form-inline">Get deals:
+    <input type="email" class="form-control" size="50" placeholder="Email Address">
+    <button type="button" class="btn btn-danger">Sign Up</button>
+  </form>
+</footer>
+</div>
+</body>
+</html>

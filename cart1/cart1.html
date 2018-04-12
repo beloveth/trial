@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>index_Store</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+  <link rel = "stylesheet" href="css/css.css"> 
+  <script src= "js/js.js"></script>
+</head>
+<body>
+  <div class="jumbotron">
+    <div class="container text-center">
+      <h1>R-I-N Online Store</h1>      
+      <p>Mission, Vission & Values</p>
+    </div>
+  </div>
+
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+          <img src="pictures/cloth1.jpeg" alt="cloth">
+          <div class="carousel-caption">
+            <h3>Sell N2500</h3>
+            <p>%10 off.</p>
+          </div>      
+        </div>
+
+        <div class="item">
+          <img src="pictures/belt.png" alt="belt">
+          <div class="carousel-caption">
+            <h3>More Sell @ N1200</h3>
+            <p>%15 0ff..</p>
+          </div>      
+        </div>
+        
+      
+  <div class="item">
+          <img src="pictures/shoe1.jpeg" alt="shoe">
+          <div class="carousel-caption">
+            <h4>Cheaper @ N1500</h3>
+            <p>%15 0ff..</p>
+          </div>      
+        </div>
+      </div>
+      <!-- Left and right controls -->
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+  </div>
+
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+        <a class="navbar-brand" href="#">Logo</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">Products</a></li>
+          <li><a href="#">Deals</a></li>
+          <li><a href="#">Stores</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>cart <span class="badge"> 1</span></a>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+  <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    <div id="myDIV">
+      
+    </div>
+  </div>
+
+  <hr>
+
+
+
+  <!--<div class="container">  -->  
+    <!--<div class="row">-->
+        <div id="div-display">
+            <button type= "button" name ="display" id = "btn-display" class = "btn btn-primary">drop item below!
+            </button> 
+        </div>
+        <br><br>
+        <div id="btn-qty">
+          <button type= "button" name ="quantity" class = "btn btn-primary" >quantity: 0
+          </button>
+        </div>
+        
+        <div id="btn-price">
+          <button type= "button" id="price-button" name ="price" class = "btn btn-primary">price: 0 
+          </button>
+        </div>
+        <br>
+        <br>
+  
+        <div id="cart">
+        <h2>shopping cart</h2>
+        <ol id="items"></ol>
+    </div>
+          
+  
+  <div class="container"> 
+    
+    <div class="row">
+      <div class="col-sm-3">
+      <div class="panel panel-primary" id = "cloth1">
+          <div class="panel-heading">Cloth</div>
+          <div class="panel-body"><img src="pictures/cloth1.jpeg" class="img-responsive" 10% off)</a></div>
+        <div class="panel-footer"><a href="#" data-toggle="tooltip" id="2500" title="Add to cart!">N2500 (15% discount)</a></div>
+        </div>
+      </div>
+      <div class="col-sm-3"> 
+        <div class="panel panel-danger">
+          <div class="panel-heading">Black Hat</div>
+          <div class="panel-body"><img src="pictures/hat.png" class="img-responsive" style="width:100%" alt="Image"></div>
+          <div class="panel-footer"><a href="#" data-toggle="tooltip"  id="1200" title="Add to cart!">N1200 (15% discount)</a></div>
+        </div>
+      </div>
+      <div class="col-sm-3"> 
+        <div class="panel panel-success">
+          <div class="panel-heading">Back Pack</div>
+          <div class="panel-body"><img src="pictures/backpack.png" class="img-responsive" style="width:100%" alt="Image"></div>
+          <div class="panel-footer"><a href="#" data-toggle="tooltip" id="3000" title="Add to cart!">N3000 (15% discount)</a></div>
+        </div>
+      </div>
+    </div>
+  
+  <!--<div class="container"> -->   
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="panel panel-primary">
+          <div class="panel-heading">Belt</div>
+          <div class="panel-body"><img src="pictures/belt.png" class="img-responsive" style="width:100%" alt="Image"></div>
+          <div class="panel-footer"><a href="cart.html" data-toggle="tooltip" id="1500" title="Add to cart!">N1500 (15% discount)</a></div>
+        </div>
+      </div>
+      <div class="col-sm-3"> 
+        <div class="panel panel-danger">
+          <div class="panel-heading">Shoe</div>
+          <div class="panel-body"><img src="pictures/shoe1.jpeg" class="img-responsive" style="width:100%" alt="Image"></div>
+          <div class="panel-footer"><a href="cart.html" data-toggle="tooltip" id="8000" title="Add to cart!">N8000 (15% discount)</a></div>
+        </div>
+      </div>
+      <div class="col-sm-3"> 
+        <div class="panel panel-success">
+          <div class="panel-heading">Jacket</div>
+          <div class="panel-body"><img src="pictures/jacket.png" class="img-responsive" style="width:100%" alt="Image"></div>
+          <div class="panel-footer"><a href="cart.html" data-toggle="tooltip" id="5000" title="Add to cart!"><span div="price">N5000</span> (15% discount)</a></div>
+        </div>
+      </div>
+    </div>
+
+
+  <!--<div class="container"> -->   
+  <div class="row">
+      <div class="col-sm-3">
+        <div class="panel panel-success">
+          <div class="panel-heading">Gloves</div>
+          <div class="panel-body"><img src="pictures/gloves.png" class="img-responsive" style="width:100%" alt="Image"></div>
+          <div class="panel-footer"><a href="cart.html" data-toggle="tooltip" id="1500" title="Add to cart!">N1500 (15% discount)</a></div>
+        </div>
+      </div>
+      <div class="col-sm-3"> 
+        <div class="panel panel-danger">
+          <div class="panel-heading">Boots</div>
+          <div class="panel-body"><img src="pictures/boots.png" class="img-responsive" style="width:100%" alt="Image"></div>
+          <div class="panel-footer"><a href="cart.html" data-toggle="tooltip" id="8000" title="Add to cart!">N8000 (15% discount)</a></div>
+        </div>
+      </div>
+      <div class="col-sm-3"> 
+        <div class="panel panel-primary">
+          <div class="panel-heading">Skirt</div>
+          <div class="panel-body"><img src="pictures/cloth2.jpeg" class="img-responsive" style="width:100%" alt="Image"></div>
+          <div class="panel-footer"><a href="cart.html" data-toggle="tooltip" id="5000" title="Add to cart!">N5000 (15% discount)</a></div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+
+  <br><br>
+
+  <div class="row">
+  <footer class="container-fluid text-center">
+    <p>RIN Online Store Copyright</p>  
+    <form class="form-inline">Get deals:
+      <input type="email" class="form-control" size="50" placeholder="Email Address">
+      <button type="button" class="btn btn-danger">Sign Up</button>
+    </form>
+  </footer>
+  </div>
+</body>
+</html>
